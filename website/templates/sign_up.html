@@ -3,7 +3,7 @@
 {% block content %}
 
 <head>
-  <title>Signup</title>
+  <title>Sign up</title>
   <style>
       body {
           font-family: Arial, sans-serif;
@@ -76,7 +76,7 @@
 </head>
 <body>
   <div class="container">
-      <h2>Signup</h2>
+      <h2>Sign up</h2>
       
       <!-- Display flash messages if they exist -->
       {% with messages = get_flashed_messages(with_categories=true) %}
@@ -97,8 +97,12 @@
               <input type="password" id="password" name="password" required>
           </div>
           <div>
-              <button class="button2" type="submit">Signup</button>
+            <label for="password">Re-type Password:</label>
+            <input type="password" id="password" name="password" required>
           </div>
+        <div>
+            <button class="button2" type="submit">Sign up</button>
+        </div>
       </form>
   </div>
 </body>
