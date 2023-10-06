@@ -1,81 +1,12 @@
-{% extends "base.html" %}
-{% block title%}Signup{% endblock %}
-{% block content %}
+{% extends "login.html" %}
 
-<head>
-  <title>Sign up</title>
-  <style>
-      body {
-          font-family: Arial, sans-serif;
-          background-color: #f4f4f4;
-          margin: 0;
-          padding: 0;
-      }
+{% block title%}
+Sign up
+{% endblock %}
 
-      .container {
-          max-width: 400px;
-          margin: 50px auto;
-          background-color: #fff;
-          padding: 20px;
-          border-radius: 5px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      h2 {
-          text-align: center;
-          margin-bottom: 20px;
-      }
-
-      label {
-          display: block;
-          margin-bottom: 5px;
-      }
-
-      input[type="email"], input[type="password"] {
-          width: 100%;
-          padding: 10px;
-          margin-bottom: 10px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-      }
-
-      
-      button.button2{
-          display: block;
-          width: 100%;
-          padding: 10px;
-          background-color: #007BFF;
-          color: #fff;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-      }
-
-      button:hover {
-          background-color: #0056b3;
-      }
-
-      .message {
-          margin-bottom: 10px;
-          padding: 10px;
-          border-radius: 4px;
-      }
-
-      .success {
-          background-color: #d4edda;
-          border: 1px solid #c3e6cb;
-          color: #155724;
-      }
-
-      .error {
-          background-color: #f8d7da;
-          border: 1px solid #f5c6cb;
-          color: #721c24;
-      }
-  </style>
-</head>
-<body>
-  <div class="container">
+{% block content%}
+<h5 style="text-align:center"> <b>{{text}}</b></h5>
+<div class="container">
       <h2>Sign up</h2>
       
       <!-- Display flash messages if they exist -->
@@ -87,24 +18,30 @@
           {% endif %}
       {% endwith %}
       
-      <form action="/sign-up" method="post">
+      <form action= "/sign-up" method="post">
           <div>
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" placeholder = "Enter email" required>
           </div>
           <div>
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required>
+            <label for="username">Username:</label>
+            <input type="username" id="username" name="username" placeholder = "Enter a username" required>
+        </div>
+          <div>
+              <label for="password1">Password:</label>
+              <input type="password" id="password1" name="password1" placeholder = "Enter password" required>
           </div>
           <div>
-            <label for="password">Re-type Password:</label>
-            <input type="password" id="password" name="password" required>
-          </div>
+            <label for="password2">Re-enter Password:</label>
+            <input type="password" id="password2" name="password2" placeholder="Re-enter password" required>
+        </div>
         <div>
             <button class="button2" type="submit">Sign up</button>
         </div>
+        <div>
+            <input type="checkbox" checked="checked" id="checkbox" name="rememberMe" style="margin-top:15px">
+            Remember Me
+        </div>
       </form>
-  </div>
-</body>
-
+</div>
 {% endblock %}
