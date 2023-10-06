@@ -1,13 +1,10 @@
 {% extends "base.html" %}
 
 {% block title%}
-Login
+Log in
 {% endblock %}
 
-{% block content %}
-
-<head>
-  <title>Log in</title>
+{% block headCSS %}
   <style>
       body {
           font-family: Arial, sans-serif;
@@ -35,7 +32,7 @@ Login
           margin-bottom: 5px;
       }
 
-      input[type="email"], input[type="password"] {
+      input[type="email"], input[type="password"], input[type="username"] {
           width: 100%;
           padding: 10px;
           margin-bottom: 10px;
@@ -77,9 +74,11 @@ Login
           color: #721c24;
       }
   </style>
-</head>
-<body>
-  <div class="container">
+{% endblock %}
+
+{% block content%}
+<h5 style="text-align:center"> <b>{{text}}</b></h5>
+<div class="container">
       <h2>Log in</h2>
       
       <!-- Display flash messages if they exist -->
@@ -91,20 +90,22 @@ Login
           {% endif %}
       {% endwith %}
       
-      <form action="/login" method="post">
+      <form action= "/login"method="post">
           <div>
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" placeholder = "Enter email" required>
           </div>
           <div>
               <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required>
+              <input type="password" id="password" name="password" placeholder = "Enter password" required>
           </div>
         <div>
             <button class="button2" type="submit">Log in</button>
         </div>
+        <div>
+            <input type="checkbox" checked="checked" id="checkbox" name="rememberMe" style="margin-top:15px">
+            Remember Me
+        </div>
       </form>
-  </div>
-</body>
-{{ text }}
+</div>
 {% endblock %}
