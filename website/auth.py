@@ -1,11 +1,12 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 
 # URLs defined here
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    data = request.form
+    if request.method == 'POST':
+        return redirect(url_for('views.home'))
     return render_template('login.html', text="Welcome to your daily activity reminder!!")
 
 @auth.route('/logout')
