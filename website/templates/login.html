@@ -81,15 +81,6 @@ Log in
 <div class="container">
       <h2>Log in</h2>
       
-      <!-- Display flash messages if they exist -->
-      {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-              {% for category, message in messages %}
-                  <div class="message {{ category }}">{{ message }}</div>
-              {% endfor %}
-          {% endif %}
-      {% endwith %}
-      
       <form action= "/login" method="post">
           <div>
               <label for="email">Email:</label>
