@@ -5,18 +5,8 @@ Sign up
 {% endblock %}
 
 {% block content%}
-<h5 style="text-align:center"> <b>{{text}}</b></h5>
 <div class="container">
       <h2>Sign up</h2>
-      
-      <!-- Display flash messages if they exist -->
-      {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-              {% for category, message in messages %}
-                  <div class="message {{ category }}">{{ message }}</div>
-              {% endfor %}
-          {% endif %}
-      {% endwith %}
       
       <form action= "/sign-up" method="post">
           <div>
