@@ -1,5 +1,21 @@
 {% extends "base.html" %}
 {% block title%}Log out{% endblock %}
 {% block content %}
-<h1>Logging out...</h1>
+<div id="logoutAnimation" class="logout-animation">
+    <h1>Logging out...</h1>
+</div>
+<style>
+    .logout-animation {
+        opacity: 1;
+        transition: opacity 1s; /* 2 seconds animation */
+    }
+</style>
+<script>
+    setTimeout(function() {
+        document.getElementById('logoutAnimation').style.opacity = '0';
+        setTimeout(function() {
+            window.location.href = "/login"; // Redirect to login after animation
+        }, 2000); // Wait for 2 seconds (same as animation duration)
+    }, 1000); // Start fading out after 1 second
+</script>
 {% endblock %}
