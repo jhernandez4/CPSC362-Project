@@ -74,6 +74,15 @@ Log in
           color: #721c24;
       }
   </style>
+
+<style>
+    body{
+        background-image: url("{{ url_for('static', filename='home_bg.png') }}");
+        background-size: cover;  
+        background-repeat: no-repeat;  
+        background-position: center center;
+    }
+</style>
 {% endblock %}
 
 {% block content%}
