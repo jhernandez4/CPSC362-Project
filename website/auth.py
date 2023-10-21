@@ -22,7 +22,7 @@ def login():
             else:
                 flash('Incorrect password!', category='error')
         else:
-            flash('An account with this username or password does not exist', category='error')
+            flash('An account with this username/email and password combination does not exist', category='error')
     return render_template('login.html', text="Welcome to your daily activity reminder!")
 
 @auth.route('/logout')
