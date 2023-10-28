@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for,session
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
@@ -10,6 +10,7 @@ auth = Blueprint('auth', __name__)
 def login():
     if request.method == 'POST':
         # user input can be email OR username
+        # label is still called email but can be either username or email
         user_input = request.form.get('email')
         password = request.form.get('password')
         
@@ -17,6 +18,7 @@ def login():
         
         if user:
             if check_password_hash(user.password, password):
+                session['username'] = user.username
                 flash('Logged in successfully!', category='success')
                 return redirect(url_for('views.home'))
             else:
@@ -38,6 +40,7 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
+        # Variables used to check with database if email and username already exist
         user_by_email = get_user(email)
         user_by_name = get_user(username)
         if user_by_email:
@@ -57,7 +60,7 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
             flash('Account created!', category='success')
-            return redirect(url_for('views.home'))
+            return redirect(url_for('views.home'), name=username )
             
     return render_template('sign_up.html')
 
