@@ -64,6 +64,17 @@
             visibility: hidden;
           }
         }
+        
+        .hide{
+            display: none;
+        }
+
+        .top-left {
+          position: absolute;
+          left: 20px;
+          top: 56px; /* Adjust this value based on the height of your navbar */
+          margin: 20px;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +94,16 @@
             </div>
         </div>
     </nav>
+<div class="dropdown hide">
+    <button class="btn btn-secondary dropdown-toggle top-left" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add Task
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <button class="dropdown-item" type="button" id="task">Task ✅</button>
+      <button class="dropdown-item" type="button" id="todo">To-do List 📝</button>
+      <button class="dropdown-item" type="button" id="timer">Timer ⏲️</button>
+    </div>
+  </div>
 
     <!-- Display flash messages if they exist -->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -129,14 +150,16 @@
             crossorigin="anonymous"
         ></script>
         <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"
-        ></script>
-        <script>
-          setTimeout(function() {
-            document.getElementById('welcome-text').classList.add('fade-out');
-          }, 2000);
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+        crossorigin="anonymous">
         </script>
+        <script>
+            setTimeout(function() {
+              document.getElementById('welcome-text').classList.add('fade-out');
+            }, 2000);
+            setTimeout(function() {
+            document.querySelector('.dropdown').classList.remove('hide');
+              }, 2500);
+          </script>
 </body>
 </html>
