@@ -4,7 +4,7 @@ This repository contains a web application developed for the CPSC362 course.
 
 ## Overview
 
-The web application provides user authentication features, allowing users to log in and sign up. It's built using Flask, a lightweight web framework for Python. 
+The web application is a todo list / task manager website that provides user authentication, allowing users to have their own personalized task lists. It's built using Flask, a lightweight web framework for Python.
 
 ## Structure
 
