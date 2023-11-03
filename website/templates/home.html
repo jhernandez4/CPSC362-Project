@@ -53,8 +53,26 @@
 
         .fade-out {
           animation: fadeOut 2s forwards;
+          animation-fill-mode: forwards;
         }
 
+        .fade-in {
+            animation: fadeIn 3s forwards;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                visibility: hidden;
+                display:none;
+            }
+            to {
+                opacity: 1;
+                visibility:visible;
+                display:flex;
+            }
+        }
         @keyframes fadeOut {
           from {
             opacity: 1;
@@ -75,6 +93,14 @@
           top: 56px; /* Adjust this value based on the height of your navbar */
           margin: 20px;
         }
+
+        .note-container {
+            opacity:.5;
+        }
+        
+        .note{
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -94,16 +120,6 @@
             </div>
         </div>
     </nav>
-<div class="dropdown hide">
-    <button class="btn btn-secondary dropdown-toggle top-left" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Add Task
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item" type="button" id="task">Task ✅</button>
-      <button class="dropdown-item" type="button" id="todo">To-do List 📝</button>
-      <button class="dropdown-item" type="button" id="timer">Timer ⏲️</button>
-    </div>
-  </div>
 
     <!-- Display flash messages if they exist -->
     {% with messages = get_flashed_messages(with_categories=true) %}
@@ -127,6 +143,39 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
+
+<div class="dropdown hide" id="task-selector">
+    <button class="btn btn-secondary dropdown-toggle top-left" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add Task
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+      <button class="dropdown-item" type="button" id="task">Task ✅</button>
+      <button class="dropdown-item" type="button" id="todo">To-do List 📝</button>
+      <button class="dropdown-item" type="button" id="timer">Timer ⏲️</button>
+    </div>
+</div>
+
+
+  <h1 align="center" id="title-note" class="hide">To-do List</h1>
+  <ul class="list-group list-group-flush hide note-container" id="notes">
+    {% for note in  user.notes %}
+    <li class="list-group-item note">
+        {{ note.data }}
+        <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+
+    </li>
+    {% endfor %}
+  </ul>
+  <form id="single-note" class="hide" method="POST">
+    <textarea cols="10" name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add task</button>
+    </div>
+  </form>
+
 
     <div class="center-content">
         <div class="container">
@@ -154,12 +203,50 @@
         crossorigin="anonymous">
         </script>
         <script>
+            // document.querySelector('.dropdown').style.opacity='0';
+            // document.getElementById('single-note').style.opacity='0';
+            // document.getElementById('title-note').style.opacity='0';
+            // document.getElementById('notes').style.opacity='0';
+
             setTimeout(function() {
               document.getElementById('welcome-text').classList.add('fade-out');
-            }, 2000);
-            setTimeout(function() {
-            document.querySelector('.dropdown').classList.remove('hide');
+            }, 1000);
+            // setTimeout(function() {
+            //   document.querySelector('.dropdown').classList.add('fade-in');
+            // }, 1000);
+            // setTimeout(function() {
+            //   document.getElementById('single-note').classList.add('fade-in');
+            // }, 1000);
+            // setTimeout(function() {
+            //   document.getElementById('title-note').classList.add('fade-in');
+            // }, 1000);
+            // setTimeout(function() {
+            //   document.getElementById('notes').classList.add('fade-in');
+            // }, 1000);
+            
+            // setTimeout(function() {
+            // document.querySelector('.dropdown').classList.remove('hide');
+            //   }, 2500);
+
+            // UNCOMMENT THIS FUNCTION CALL SO THAT DROP DOWN BAR APPEARS
+            // setTimeout(function() {
+            // document.getElementById('task-selector').classList.remove('hide');
+            //   }, 2500);
+
+              setTimeout(function() {
+            document.getElementById('single-note').classList.remove('hide');
               }, 2500);
-          </script>
+              setTimeout(function() {
+            document.getElementById('title-note').classList.remove('hide');
+              }, 2500);
+              setTimeout(function() {
+            document.getElementById('notes').classList.remove('hide');
+              }, 2500);
+        </script>
+
+        <script
+          type="text/javascript"
+          src="{{ url_for('static', filename='index.js')}}">
+        </script>
 </body>
 </html>
