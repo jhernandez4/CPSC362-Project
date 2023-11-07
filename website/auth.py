@@ -24,7 +24,7 @@ def login():
                 flash('Logged in successfully!', category='success')
                 return redirect(url_for('views.home'))
             else:
-                flash('Incorrect password!', category='error')
+                flash('An account with this username/email and password combination does not exist', category='error')
         else:
             flash('An account with this username/email and password combination does not exist', category='error')
     return render_template('login.html', text="Welcome to your daily activity reminder!", user=current_user)
