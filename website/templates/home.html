@@ -54,6 +54,7 @@
         .fade-out {
           animation: fadeOut 2s forwards;
           animation-fill-mode: forwards;
+          animation-iteration-count: 1;
         }
 
         .fade-in {
@@ -203,30 +204,9 @@
         crossorigin="anonymous">
         </script>
         <script>
-            // document.querySelector('.dropdown').style.opacity='0';
-            // document.getElementById('single-note').style.opacity='0';
-            // document.getElementById('title-note').style.opacity='0';
-            // document.getElementById('notes').style.opacity='0';
-
             setTimeout(function() {
               document.getElementById('welcome-text').classList.add('fade-out');
             }, 1000);
-            // setTimeout(function() {
-            //   document.querySelector('.dropdown').classList.add('fade-in');
-            // }, 1000);
-            // setTimeout(function() {
-            //   document.getElementById('single-note').classList.add('fade-in');
-            // }, 1000);
-            // setTimeout(function() {
-            //   document.getElementById('title-note').classList.add('fade-in');
-            // }, 1000);
-            // setTimeout(function() {
-            //   document.getElementById('notes').classList.add('fade-in');
-            // }, 1000);
-            
-            // setTimeout(function() {
-            // document.querySelector('.dropdown').classList.remove('hide');
-            //   }, 2500);
 
             // UNCOMMENT THIS FUNCTION CALL SO THAT DROP DOWN BAR APPEARS
             // setTimeout(function() {
@@ -235,11 +215,7 @@
 
               setTimeout(function() {
             document.getElementById('single-note').classList.remove('hide');
-              }, 2500);
-              setTimeout(function() {
             document.getElementById('title-note').classList.remove('hide');
-              }, 2500);
-              setTimeout(function() {
             document.getElementById('notes').classList.remove('hide');
               }, 2500);
         </script>
