@@ -12,7 +12,7 @@ def login():
     if request.method == 'POST':
         # user input can be email OR username
         # label is still called email but can be either username or email
-        user_input = request.form.get('email')
+        user_input = request.form.get('text')
         password = request.form.get('password')
         
         user = get_user(user_input)
