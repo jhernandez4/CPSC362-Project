@@ -160,12 +160,11 @@
   <h1 align="center" id="title-note" class="hide">To-do List</h1>
   <ul class="list-group list-group-flush hide note-container" id="notes">
     {% for note in  user.notes %}
-    <li class="list-group-item note">
+    <li class="list-group-item note" id="{{note.id}}">
         {{ note.data }}
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
             <span aria-hidden="true">&times;</span>
         </button>
-
     </li>
     {% endfor %}
   </ul>
