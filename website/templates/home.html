@@ -159,6 +159,7 @@
 
   <h1 align="center" id="title-note" class="hide">To-do List</h1>
   <ul class="list-group list-group-flush hide note-container" id="notes">
+    <!--This code is still needed otherwise already existing notes wont appear on login -->
     {% for note in  user.notes %}
     <li class="list-group-item note" id="{{note.id}}">
         {{ note.data }}
@@ -172,7 +173,7 @@
     <textarea cols="10" name="note" id="note" class="form-control"></textarea>
     <br />
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add task</button>
+        <button type="button" class="btn btn-primary" onClick="addNote()">Add task</button>
     </div>
   </form>
 
