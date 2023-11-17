@@ -32,12 +32,20 @@ function addNote(){
         }
     }).then(data => {
         let newNoteId = data.noteId;
+        
+        let checkBox = document.createElement('input');
+        checkBox.className = 'form-check-input';
+        checkBox.type = 'checkbox';
+        checkBox.value = '';
 
         let newNoteElement = document.createElement('li');
         newNoteElement.className = 'list-group-item note';
         newNoteElement.id = newNoteId;
-        newNoteElement.innerHTML = noteData;
+        // newNoteElement.innerHTML = noteData;
 
+        newNoteElement.appendChild(checkBox);
+        newNoteElement.appendChild(document.createTextNode(noteData));
+        
         // Add a delete button
         let deleteButton = document.createElement('button');
         deleteButton.type = 'button';
@@ -47,6 +55,7 @@ function addNote(){
             deleteNote(newNoteId);
         };
 
+        
         newNoteElement.appendChild(deleteButton);
 
         // Add the new note to the existing list
