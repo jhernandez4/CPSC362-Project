@@ -102,10 +102,14 @@
         .note{
             opacity: 1;
         }
+
+        .strikethrough {
+            text-decoration: line-through;}
+
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -119,6 +123,9 @@
                 <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
                 {% endif %}
             </div>
+            {% if user.is_authenticated %}
+            <span class="navbar-text px-5">Logged in as: {{user.email}}</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -156,37 +163,39 @@
     </div>
 </div>
 
-
-  <h1 align="center" id="title-note" class="hide">To-do List</h1>
-  <ul class="list-group list-group-flush hide note-container" id="notes">
+<!-- THIS IS A SINGLE TO-DO LIST -->
+<div class="d-block ml-5 w-25">
+    <h1 align="center" id="title-note" class="hide mt-3">To-do List</h1>
+    <ul class="list-group hide note-container" id="notes">
     <!--This code is still needed otherwise already existing notes wont appear on login -->
     {% for note in  user.notes %}
-    <li class="list-group-item note" id="{{note.id}}">
-        {{ note.data }}
+    <li class="list-group-item d-flex justify-content-between break-word note" id="{{note.id}}">
+        <input class="form-check-input" type="checkbox" value="">
+        <div class="text-truncate">{{ note.data }}</div>
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
             <span aria-hidden="true">&times;</span>
         </button>
     </li>
     {% endfor %}
-  </ul>
-  <form id="single-note" class="hide" method="POST">
-    <textarea cols="10" name="note" id="note" class="form-control"></textarea>
-    <br />
-    <div align="center">
-        <button type="button" class="btn btn-primary" onClick="addNote()">Add task</button>
-    </div>
-  </form>
+    </ul>
+    <form id="single-note" class="hide" method="POST">
+        <textarea cols="10" name="note" id="note" class="form-control"></textarea>
+        <br />
+        <div align="center">
+            <button type="button" class="btn btn-primary" onClick="addNote()">Add task</button>
+        </div>
+    </form>     
+</div>
 
-
-    <div class="center-content">
-        <div class="container">
-            <div class="row justify-content-center align-items-center" style="height: 100vh;">
-                <div class="col-md-6 text-center">
-                    <h1 id="welcome-text">Welcome to Task Manager, {{ user.username }}!</h1>
-                </div>
+<div class="center-content">
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="height: 100vh;">
+            <div class="col-md-6 text-center">
+                <h1 id="welcome-text">Welcome to Task Manager, {{ user.username }}!</h1>
             </div>
         </div>
     </div>
+</div>
     
     
     <script
