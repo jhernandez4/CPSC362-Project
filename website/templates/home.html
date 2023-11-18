@@ -104,7 +104,9 @@
         }
 
         .strikethrough {
-            text-decoration: line-through;}
+            text-decoration: line-through;
+            color: red;
+        }
 
     </style>
 </head>
@@ -168,10 +170,10 @@
     <h1 align="center" id="title-note" class="hide mt-3">To-do List</h1>
     <ul class="list-group hide note-container" id="notes">
     <!--This code is still needed otherwise already existing notes wont appear on login -->
-    {% for note in  user.notes %}
+    {% for note in user.notes %}
     <li class="list-group-item d-flex justify-content-between break-word note" id="{{note.id}}">
-        <input class="form-check-input" type="checkbox" value="">
-        <div class="text-truncate">{{ note.data }}</div>
+        <input class="form-check-input" id="strikeThroughCheckbox_{{loop.index}}" type="checkbox" value="" onChange="toggleStrikeThru({{loop.index}})">
+        <div class="text-truncate" id="{{loop.index}}">{{ note.data }}</div>
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
             <span aria-hidden="true">&times;</span>
         </button>
