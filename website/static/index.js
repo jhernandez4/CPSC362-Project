@@ -1,3 +1,18 @@
+function toggleStrikeThru(noteId){
+    let checkbox = document.getElementById('strikeThroughCheckbox_'+ noteId);
+      
+      // Get the text element you want to apply the strikethrough to
+    let textElement = document.getElementById(noteId);
+
+      // Toggle the 'strikethrough' class based on the checkbox state
+    if (checkbox.checked) {
+        textElement.classList.add('strikethrough');
+    } else {
+        textElement.classList.remove('strikethrough');
+    }
+}
+
+
 function deleteNote(noteId) {
     fetch("/delete-note", {
         method: "POST",
