@@ -1,9 +1,10 @@
-function toggleStrikeThru(noteId){
-    let checkbox = document.getElementById('strikeThroughCheckbox_'+ noteId);
-      
-      // Get the text element you want to apply the strikethrough to
-    let textElement = document.getElementById(noteId);
+function toggleStrikeThru(checkbox){
+     // Traverse the DOM to find the parent li element
+     let listItem = checkbox.closest('li');
 
+     // Get the text element inside the li element
+     let textElement = listItem.querySelector('.text-truncate');
+ 
       // Toggle the 'strikethrough' class based on the checkbox state
     if (checkbox.checked) {
         textElement.classList.add('strikethrough');
