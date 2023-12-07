@@ -172,8 +172,8 @@
     <!--This code is still needed otherwise already existing notes wont appear on login -->
     {% for note in user.notes %}
     <li class="list-group-item d-flex justify-content-between break-word note" id="{{note.id}}">
-        <input class="form-check-input" type="checkbox" value="" onChange="toggleStrikeThru(this)">
-        <div class="text-truncate">{{ note.data }}</div>
+        <input class="form-check-input" type="checkbox" value="" onChange="toggleStrikeThru(this, {{ note.id }})" {% if note.is_checked %}checked{% endif %}>
+        <div class="text-break {% if note.is_checked %}strikethrough{% endif %} ">{{ note.data }}</div>
         <button type="button" class="close" onClick="deleteNote({{ note.id }})">
             <span aria-hidden="true">&times;</span>
         </button>
