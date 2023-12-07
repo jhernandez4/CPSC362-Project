@@ -49,3 +49,10 @@ def delete_note():
             db.session.delete(note)
             db.session.commit()
             return jsonify({})
+        
+@views.route('/update_checkbox/<int:note_id>', methods=['POST'])
+def update_checkbox(note_id):
+    note = Note.query.get_or_404(note_id)
+    note.is_checked = request.json.get('checked')
+    db.session.commit()
+    return jsonify({'success': True})
