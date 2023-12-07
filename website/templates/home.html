@@ -33,8 +33,15 @@
             height: 100vh;
         }
 
-        h1 {
+        h1{
             font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .title {
+            font-family: Arial, sans-serif;
+            font-size:30px;
             color: white;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
@@ -167,7 +174,7 @@
 
 <!-- THIS IS A SINGLE TO-DO LIST -->
 <div class="d-block ml-5 w-25">
-    <h1 align="center" id="title-note" class="hide mt-3">To-do List</h1>
+    <input type="text" readonly align="center" id="title-note" class="hide mt-3 form-control-plaintext title" value="Enter A List Name">
     <ul class="list-group hide note-container" id="notes">
     <!--This code is still needed otherwise already existing notes wont appear on login -->
     {% for note in user.notes %}
