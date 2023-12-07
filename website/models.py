@@ -7,7 +7,14 @@ class Note(db.Model):
     data = db.Column(db.String(1000))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    list_id = db.Column(db.Integer, db.ForeignKey('list.id'))
     is_checked = db.Column(db.Boolean, default=False)
+
+class List(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(255))  # Adjust the length based on your requirements
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    notes = db.relationship('Note', backref='list', lazy=True)
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
