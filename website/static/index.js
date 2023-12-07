@@ -1,9 +1,9 @@
-function toggleStrikeThru(checkbox){
+function toggleStrikeThru(checkbox, noteId){
      // Traverse the DOM to find the parent li element
      let listItem = checkbox.closest('li');
 
      // Get the text element inside the li element
-     let textElement = listItem.querySelector('.text-truncate');
+     let textElement = listItem.querySelector('.text-break');
  
       // Toggle the 'strikethrough' class based on the checkbox state
     if (checkbox.checked) {
@@ -11,6 +11,17 @@ function toggleStrikeThru(checkbox){
     } else {
         textElement.classList.remove('strikethrough');
     }
+
+    // Send an AJAX request to update the is_checked field in the database
+    fetch(`/update_checkbox/${noteId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            checked: checkbox.checked,
+        }),
+    });
 }
 
 
@@ -53,14 +64,22 @@ function addNote(){
         checkBox.className = 'form-check-input';
         checkBox.type = 'checkbox';
         checkBox.value = '';
+        checkBox.onchange = function() {
+            toggleStrikeThru(this, newNoteId);
+        }
 
         let newNoteElement = document.createElement('li');
         newNoteElement.className = 'list-group-item note';
         newNoteElement.id = newNoteId;
         // newNoteElement.innerHTML = noteData;
 
+       newNote = document.createElement('div')
+       newNote.className = 'text-break';
+       newNote.innerHTML = noteData;
+
         newNoteElement.appendChild(checkBox);
-        newNoteElement.appendChild(document.createTextNode(noteData));
+        // newNoteElement.appendChild(document.createTextNode(noteData));
+        newNoteElement.appendChild(newNote)
         
         // Add a delete button
         let deleteButton = document.createElement('button');
