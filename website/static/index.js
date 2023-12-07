@@ -102,3 +102,21 @@ function addNote(){
     });
 }
 }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let editableInput = document.getElementById("title-note");
+
+    // Toggle readonly on double-click
+    editableInput.addEventListener("dblclick", function () {
+        editableInput.readOnly = !editableInput.readOnly;
+    });
+
+    // Add readonly on Enter key press
+    editableInput.addEventListener("keypress", function (e) {
+        if (e.key === 13) {
+            // 13 is the keycode for Enter
+            editableInput.readOnly = true;
+        }
+    });
+});
