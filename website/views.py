@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Note
+from .models import Note, List
 from . import db
 import json
 
@@ -56,3 +56,26 @@ def update_checkbox(note_id):
     note.is_checked = request.json.get('checked')
     db.session.commit()
     return jsonify({'success': True})
+
+
+@views.route('/save_title', methods=['POST'])
+def save_title():
+    data = json.loads(request.data)
+    new_title = data['title']
+
+    existing_title = List.query.filter_by(user_id=current_user.id).first()
+
+    if len(new_title) < 1:
+            flash('Title is too short!', category="error")
+    elif existing_title:
+        existing_title.title = new_title
+        flash('Title updated!', category="success")
+    else:
+        # Create a new title if none exists
+        new_list = List(title=new_title, user_id=current_user.id)
+        db.session.add(new_list)
+        flash('Title saved!', category="success")
+    
+    db.session.commit()
+
+    return jsonify({'title': existing_title.title})
