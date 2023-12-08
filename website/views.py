@@ -67,6 +67,7 @@ def save_title():
 
     if len(new_title) < 1:
             flash('Title is too short!', category="error")
+            return jsonify({'title': 'Enter A List Name'})
     elif existing_title:
         existing_title.title = new_title
         flash('Title updated!', category="success")
