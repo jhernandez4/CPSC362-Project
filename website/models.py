@@ -21,4 +21,5 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     username = db.Column(db.String(150))
+    lists = db.relationship('List', backref='user', lazy=True)
     notes = db.relationship('Note')
