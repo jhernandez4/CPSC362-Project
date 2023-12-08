@@ -114,9 +114,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add readonly on Enter key press
     editableInput.addEventListener("keypress", function (e) {
-        if (e.key === 13) {
+        let titleData = document.getElementById('title-note').value;
+        if (e.key === "Enter" || e.keyCode === 13) {
             // 13 is the keycode for Enter
             editableInput.readOnly = true;
+            fetch(`/save_title`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    title: titleData
+                }),
+            }).then(response => response.json())  // Parse the JSON response
+            .then(data => {
+                existing_title = data.title;
+                editableInput.value = existing_title;  // Set the value of the input field
+            })
         }
     });
 });
