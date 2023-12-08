@@ -174,7 +174,8 @@
 
 <!-- THIS IS A SINGLE TO-DO LIST -->
 <div class="d-block ml-5 w-25">
-    <input type="text" readonly align="center" id="title-note" class="hide mt-3 form-control-plaintext title" value="Enter A List Name">
+    <!-- VERIFY TITLE OF TODO LIST USING JINJA LANGUAGE AND DB OBJECT (USERS) -->
+    <input type="text" readonly align="center" id="title-note" class="hide mt-3 form-control-plaintext title" value="{% if user.lists[0] %} {{user.lists[0].title}} {% else %} Enter A List Name {% endif %}">
     <ul class="list-group hide note-container" id="notes">
     <!--This code is still needed otherwise already existing notes wont appear on login -->
     {% for note in user.notes %}
