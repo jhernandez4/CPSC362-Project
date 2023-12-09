@@ -1,1 +1,0 @@
-Delete this file before running program. It will by replaced by database.db when program runs.
