@@ -66,9 +66,12 @@ def save_title():
     existing_title = List.query.filter_by(user_id=current_user.id).first()
 
     if len(new_title) < 1:
+            title_to_send ='Enter A List Name'
+            if existing_title:
+                title_to_send = existing_title.title
             flash('Title is too short!', category="error")
-            return jsonify({'title': 'Enter A List Name'})
-    elif existing_title:
+            return jsonify({'title': title_to_send})
+    if existing_title:
         existing_title.title = new_title
         flash('Title updated!', category="success")
     else:
